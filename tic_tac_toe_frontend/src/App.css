@@ -1,0 +1,130 @@
+:root {
+  --primary-color: #2196F3;
+  --secondary-color: #4CAF50;
+  --accent-color: #FFC107;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-color);
+  padding: 20px;
+}
+
+.game-container {
+  background-color: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  max-width: 500px;
+  width: 100%;
+}
+
+h1 {
+  color: var(--primary-color);
+  margin-bottom: 24px;
+  font-size: 2.5rem;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 24px 0;
+}
+
+.square {
+  background: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-color);
+}
+
+.square:hover:not(:disabled) {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.square.winning {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.game-status {
+  margin: 16px 0;
+}
+
+.players-score {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 16px;
+}
+
+.player {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.player.active {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+.status-message {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin: 16px 0;
+}
+
+.reset-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 16px;
+}
+
+.reset-button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .square {
+    font-size: 2rem;
+  }
+
+  .status-message {
+    font-size: 1rem;
+  }
+}
