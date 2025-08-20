@@ -1,4 +1,5 @@
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 // Helper to render components with any necessary providers/context
 export const renderWithProviders = (ui, options = {}) => {
@@ -25,4 +26,36 @@ export const simulateGameMoves = (moves) => {
   });
   
   return squares;
+};
+
+// Helper to simulate rapid clicks on game board
+export const simulateRapidClicks = async (element, times = 3) => {
+  for (let i = 0; i < times; i++) {
+    fireEvent.click(element);
+    await new Promise(resolve => setTimeout(resolve, 50)); // Small delay to simulate rapid clicks
+  }
+};
+
+// Helper to test keyboard navigation
+export const simulateKeyboardNavigation = async (startElement, steps) => {
+  let currentElement = startElement;
+  for (const step of steps) {
+    fireEvent.keyDown(currentElement, { key: step });
+    await new Promise(resolve => setTimeout(resolve, 50));
+  }
+};
+
+// Helper to validate accessibility attributes
+export const validateAccessibilityAttributes = (element) => {
+  const role = element.getAttribute('role');
+  const ariaLabel = element.getAttribute('aria-label');
+  const ariaPressed = element.getAttribute('aria-pressed');
+  const tabIndex = element.getAttribute('tabindex');
+  
+  return {
+    role,
+    ariaLabel,
+    ariaPressed,
+    tabIndex
+  };
 };
